@@ -127,7 +127,7 @@ grr_config_imap_hide_interface: "false"
 ```
 Set the fixed URL that will be set as the CAS service parameter. When this method is not called, a phpCAS script uses its own URL.
 ```yml
-grr_config_CAS_setFixedServiceURL: ""
+grr_config_cas_set_fixed_service_url: ""
 ```
 
 ## License
