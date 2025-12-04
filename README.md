@@ -1,5 +1,5 @@
 # Ansible GRR
-[![CI](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml/badge.svg)](https://github.com/supertarto/ansible-grr/actions/workflows/ci.yml)
+[![CI](https://github.com/supertarto/ansible-role-grr/actions/workflows/ci.yml/badge.svg)](https://github.com/supertarto/ansible-role-grr/actions/workflows/ci.yml)
 
 Install and configure GRR with ansible. Tested with GRR *>=v4.1.0* and for debian 12 and debian 13.
 
@@ -128,11 +128,6 @@ grr_config_imap_hide_interface: "false"
 Set the fixed URL that will be set as the CAS service parameter. When this method is not called, a phpCAS script uses its own URL.
 ```yml
 grr_config_CAS_setFixedServiceURL: ""
-```
-
-## Installation
-```
-ansible-galaxy role install supertarto.grr
 ```
 
 ## License

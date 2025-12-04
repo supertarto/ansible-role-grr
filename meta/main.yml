@@ -2,12 +2,12 @@
 dependencies: []
 
 galaxy_info:
+  role_name: "grr"
   author: "Xavier Binois"
-  description: "Install and configure Grr with Ansible"
-  role_name: grr
   namespace: supertarto
+  description: "Install and configure Grr with Ansible"
   license: "GNU General Public License v3.0"
-  min_ansible_version: 2.10
+  min_ansible_version: "2.19"
 
   platforms:
     - name: "Debian"

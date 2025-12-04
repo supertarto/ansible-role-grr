@@ -1,7 +1,7 @@
 ---
 - name: Install requirements
   ansible.builtin.package:
-    name: ["unzip"]
+    name: "unzip"
     state: present
 
 - name: Check if GRR directories already exists
@@ -9,9 +9,9 @@
     path: "{{ grr_content_dest }}"
   register: grr_installed
 
-# Backup local config
-- block:
-
+- name: Backup Local Config
+  when: grr_force_update and grr_installed.stat.exists
+  block:
     - name: Check if GRR Backup already exists
       ansible.builtin.stat:
         path: "{{ grr_backup_directory }}"
@@ -28,13 +28,14 @@
         remote_src: true
         src: "{{ grr_content_dest }}/"
         dest: "{{ grr_backup_directory }}"
+        owner: "root"
+        group: "root"
+        mode: "750"
 
     - name: Remove GRR Folder before update
       ansible.builtin.file:
         path: "{{ grr_content_dest }}"
         state: absent
-
-  when: grr_force_update and grr_installed.stat.exists
 
 - name: Download and extract GRR
   ansible.builtin.unarchive:
@@ -52,7 +53,11 @@
   register: grr_extracted_directory
 
 - name: Rename GRR extracted directory
-  command: mv {{ grr_unarchive_dir }}/GRR-{{ grr_version }} {{ grr_content_dest }}
+  ansible.builtin.command:
+    mv {{ grr_unarchive_dir }}/GRR-{{ grr_version }} {{ grr_content_dest }}
+  args:
+    creates: "{{ grr_content_dest }}"
+    removes: "{{ grr_unarchive_dir }}/GRR-{{ grr_version }}"
   when: grr_extracted_directory.stat.exists
 
 - name: Copy Connect File
