@@ -17,7 +17,7 @@ date_default_timezone_set('{{ grr_config_default_timezone }}');
 
 # Affichage d'un domaine par defaut en fonction de l'adresse IP de la machine cliente (voir documentation)
 # Mettre 0 ou 1 pour désactiver ou activer la fonction dans la page de gestion des domaines
- $gOptionIp = {{ grr_config_default_domain_by_ip }});
+ $gOptionIp = {{ grr_config_default_domain_by_ip }};
 
 # Nombre maximum (+1) de réservations autorisés lors d'une réservation avec périodicité
  $max_rep_entrys = {{ grr_config_max_periodic_reservation }};
